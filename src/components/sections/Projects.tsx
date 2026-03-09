@@ -1,4 +1,4 @@
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 
 const projects = [
   {
@@ -9,7 +9,6 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: true,
-    gradient: 'from-violet-500 to-fuchsia-600',
   },
   {
     title: 'LeafLens',
@@ -19,7 +18,6 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: true,
-    gradient: 'from-green-500 to-emerald-600',
   },
   {
     title: 'Pizza Showdown App',
@@ -29,7 +27,6 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: true,
-    gradient: 'from-red-500 to-orange-600',
   },
   {
     title: 'Number Plate Recognition',
@@ -38,8 +35,7 @@ const projects = [
     tech: ['YOLOv8', 'Python', 'OpenCV', 'Computer Vision'],
     github: 'https://github.com/TalhaBinShahid',
     live: null,
-    featured: true,
-    gradient: 'from-blue-500 to-cyan-600',
+    featured: false,
   },
   {
     title: 'Agentic AI Chatbot',
@@ -49,7 +45,6 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: false,
-    gradient: 'from-purple-500 to-pink-600',
   },
   {
     title: 'Eye Disease Detection',
@@ -59,7 +54,6 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: false,
-    gradient: 'from-teal-500 to-cyan-600',
   },
   {
     title: 'Twitter Sentiment Analysis',
@@ -69,88 +63,67 @@ const projects = [
     github: 'https://github.com/TalhaBinShahid',
     live: null,
     featured: false,
-    gradient: 'from-sky-500 to-blue-600',
   },
 ];
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   return (
     <div
-      className={`reveal-up project-card ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
+      className="reveal-up group"
+      style={{ animationDelay: `${index * 0.08}s` }}
     >
-      {/* Gradient Top Bar */}
-      <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />
-      
-      <div className="p-6">
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block glass-card rounded-2xl p-6 h-full transition-all duration-500 hover:border-primary/20"
+      >
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h3 className="font-display text-xl font-bold mb-1">{project.title}</h3>
-            <p className="text-primary text-sm">{project.subtitle}</p>
+            <h3 className="font-display text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-sm text-muted-foreground">{project.subtitle}</p>
           </div>
-          <div className="flex gap-2">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
-              >
-                <Github size={20} />
-              </a>
-            )}
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
-              >
-                <ExternalLink size={20} />
-              </a>
-            )}
-          </div>
+          <ArrowUpRight size={18} className="text-muted-foreground group-hover:text-primary transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
           {project.description}
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-auto">
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-xs rounded-full bg-muted border border-border"
+              className="px-2.5 py-1 text-xs rounded-md bg-muted text-muted-foreground"
             >
               {tech}
             </span>
           ))}
         </div>
-      </div>
+      </a>
     </div>
   );
 }
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-x-1/2" />
-
+    <section id="projects" className="py-28 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="reveal-up section-heading text-gradient">Featured Projects</h2>
+          <p className="reveal-up section-label">Work</p>
+          <h2 className="reveal-up section-heading">Featured work</h2>
           <p className="reveal-up section-subheading max-w-2xl mx-auto">
             A showcase of AI-powered applications and intelligent systems
           </p>
         </div>
 
-        {/* Featured Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Featured Projects */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
@@ -158,10 +131,10 @@ export function Projects() {
 
         {/* Other Projects */}
         <div className="reveal-up">
-          <h3 className="font-display text-xl font-semibold text-center mb-8 text-muted-foreground">
-            More Projects
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground text-center mb-8">
+            More projects
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {projects.filter(p => !p.featured).map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index + 3} />
             ))}
@@ -176,8 +149,8 @@ export function Projects() {
             rel="noopener noreferrer"
             className="btn-outline inline-flex items-center gap-2"
           >
-            <Github size={20} />
-            View All Projects on GitHub
+            <Github size={16} />
+            View all on GitHub
           </a>
         </div>
       </div>
