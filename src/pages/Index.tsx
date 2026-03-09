@@ -77,28 +77,28 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      
-      {/* Gradient mesh behind particles */}
-      <div className="fixed inset-0 -z-20">
+    <>
+      {/* Background layers - outside overflow container */}
+      <div className="fixed inset-0 z-0">
         <GradientMesh />
       </div>
-      {/* Particles on top of mesh */}
-      <div className="fixed inset-0 -z-10">
+      <div className="fixed inset-0 z-[1]">
         <ParticleField />
       </div>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <GitHubActivity />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+      <div className="relative z-[2] min-h-screen overflow-x-hidden">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <GitHubActivity />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
