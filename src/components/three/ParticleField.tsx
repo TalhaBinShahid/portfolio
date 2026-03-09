@@ -118,13 +118,13 @@ export function ParticleField() {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 160) {
-            const alpha = 0.12 * (1 - dist / 160);
+          if (dist < 180) {
+            const alpha = 0.18 * (1 - dist / 180);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `hsla(187, 100%, 50%, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
