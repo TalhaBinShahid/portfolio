@@ -37,17 +37,17 @@ export function ParticleField() {
     window.addEventListener('mousemove', onMouseMove);
 
     for (let i = 0; i < particleCount; i++) {
-      const baseOpacity = Math.random() * 0.4 + 0.15;
+      const baseOpacity = Math.random() * 0.6 + 0.25;
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 3 + 0.8,
         opacity: baseOpacity,
         baseOpacity,
-        hue: Math.random() > 0.7 ? 262 : 187, // mix cyan and purple
-        pulseSpeed: Math.random() * 0.02 + 0.01,
+        hue: Math.random() > 0.6 ? 262 : 187,
+        pulseSpeed: Math.random() * 0.03 + 0.01,
         pulseOffset: Math.random() * Math.PI * 2,
       });
     }
