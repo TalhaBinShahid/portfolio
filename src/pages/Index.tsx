@@ -10,8 +10,6 @@ import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
 import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
-import { ParticleField } from '@/components/three/ParticleField';
-import { GradientMesh } from '@/components/GradientMesh';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,13 +111,6 @@ const Index = () => {
 
   return (
     <>
-      {/* Background layers */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <GradientMesh />
-      </div>
-      <div className="fixed inset-0 z-[1] pointer-events-none">
-        <ParticleField />
-      </div>
       <div ref={contentRef} className="relative z-[2] min-h-screen overflow-x-hidden">
         <Navbar />
         <main>
