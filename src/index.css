@@ -301,6 +301,6 @@
 
   /* Interactive Elements with Custom Cursor */
   a, button, input, select, textarea, [role="button"], .cursor-pointer {
-    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="4" fill="%2300ffff" opacity="0.9"/><circle cx="14" cy="14" r="10" fill="none" stroke="%2300ffff" stroke-width="2" opacity="0.7"/></svg>') 14 14, pointer;
+    cursor: none;
   }
 }
