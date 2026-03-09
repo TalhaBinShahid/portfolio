@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { ParticleField } from '../three/ParticleField';
+import { GradientMesh } from '../GradientMesh';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
