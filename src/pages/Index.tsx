@@ -78,7 +78,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      <CustomCursor />
+      
       {/* Gradient mesh behind particles */}
       <div className="fixed inset-0 -z-20">
         <GradientMesh />
