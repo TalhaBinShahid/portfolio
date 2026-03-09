@@ -12,6 +12,7 @@ import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
 import { ParticleField } from '@/components/three/ParticleField';
 import { CustomCursor } from '@/components/CustomCursor';
+import { GradientMesh } from '@/components/GradientMesh';
 
 gsap.registerPlugin(ScrollTrigger);
 
