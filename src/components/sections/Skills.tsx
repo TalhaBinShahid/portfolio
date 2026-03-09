@@ -82,7 +82,7 @@ function SkillBadge({ name, delay }: { name: string; delay: number }) {
   return (
     <div
       ref={badgeRef}
-      className="skill-badge opacity-0"
+      className="skill-badge"
     >
       {name}
     </div>
