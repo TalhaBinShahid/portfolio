@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -77,18 +77,30 @@ function FloatingTorus() {
   );
 }
 
+function Scene() {
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <Particles />
+      <FloatingGeometry />
+      <FloatingTorus />
+    </>
+  );
+}
+
 export function ParticleField() {
   return (
     <div className="absolute inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.5} />
-        <Particles />
-        <FloatingGeometry />
-        <FloatingTorus />
-      </Canvas>
+      <Suspense fallback={null}>
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          style={{ background: 'transparent' }}
+          gl={{ antialias: true, alpha: true }}
+          dpr={[1, 2]}
+        >
+          <Scene />
+        </Canvas>
+      </Suspense>
     </div>
   );
 }
