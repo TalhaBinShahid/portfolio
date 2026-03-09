@@ -88,9 +88,13 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      
-      
-      {/* Gradient Overlay */}
+      {/* Background animations */}
+      <div className="absolute inset-0 -z-20 pointer-events-none">
+        <GradientMesh />
+      </div>
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <ParticleField />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
 
       <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
