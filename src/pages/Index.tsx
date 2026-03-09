@@ -10,8 +10,6 @@ import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
 import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
-import { ParticleField } from '@/components/three/ParticleField';
-import { GradientMesh } from '@/components/GradientMesh';
 
 gsap.registerPlugin(ScrollTrigger);
 
