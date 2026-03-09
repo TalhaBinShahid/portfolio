@@ -45,7 +45,7 @@ export function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            © {currentYear} Built with <Heart size={14} className="text-red-500" /> by Talha
+            © {currentYear} Built with <Heart size={14} className="text-destructive" /> by Talha
           </p>
         </div>
       </div>
