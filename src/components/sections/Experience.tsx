@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Award } from 'lucide-react';
+import { Briefcase, Award } from 'lucide-react';
 
 const experiences = [
   {
