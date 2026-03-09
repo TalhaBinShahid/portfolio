@@ -118,12 +118,11 @@ export function Skills() {
               <h3 className={`font-display text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
                 {category.title}
               </h3>
-              <div>
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
+                  <SkillBadge
+                    key={skill}
+                    name={skill}
                     delay={categoryIndex * 0.1 + skillIndex * 0.05}
                   />
                 ))}
