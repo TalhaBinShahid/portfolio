@@ -103,8 +103,8 @@ export function ParticleField() {
         p.opacity = p.baseOpacity + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.2;
 
         // Glow effect
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = `hsla(${p.hue}, 100%, 50%, ${p.opacity * 0.5})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${p.hue}, 100%, 50%, ${p.opacity * 0.8})`;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
