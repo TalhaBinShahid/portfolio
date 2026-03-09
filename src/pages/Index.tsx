@@ -79,10 +79,10 @@ const Index = () => {
   return (
     <>
       {/* Background layers - outside overflow container */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <GradientMesh />
       </div>
-      <div className="fixed inset-0 z-[1]">
+      <div className="fixed inset-0 z-[1] pointer-events-none">
         <ParticleField />
       </div>
       <div className="relative z-[2] min-h-screen overflow-x-hidden">
