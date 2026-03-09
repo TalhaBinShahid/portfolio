@@ -21,7 +21,7 @@ export function ParticleField() {
     }
 
     const particles: Particle[] = [];
-    const particleCount = 100;
+    const particleCount = 180;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -37,17 +37,17 @@ export function ParticleField() {
     window.addEventListener('mousemove', onMouseMove);
 
     for (let i = 0; i < particleCount; i++) {
-      const baseOpacity = Math.random() * 0.4 + 0.15;
+      const baseOpacity = Math.random() * 0.6 + 0.25;
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 3 + 0.8,
         opacity: baseOpacity,
         baseOpacity,
-        hue: Math.random() > 0.7 ? 262 : 187, // mix cyan and purple
-        pulseSpeed: Math.random() * 0.02 + 0.01,
+        hue: Math.random() > 0.6 ? 262 : 187,
+        pulseSpeed: Math.random() * 0.03 + 0.01,
         pulseOffset: Math.random() * Math.PI * 2,
       });
     }
@@ -63,7 +63,8 @@ export function ParticleField() {
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, canvas.width * 0.7
       );
-      grad.addColorStop(0, 'hsla(262, 83%, 58%, 0.03)');
+      grad.addColorStop(0, 'hsla(262, 83%, 58%, 0.06)');
+      grad.addColorStop(0.5, 'hsla(187, 100%, 50%, 0.02)');
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -99,11 +100,11 @@ export function ParticleField() {
         if (p.y > canvas.height) p.y = 0;
 
         // Pulsing opacity
-        p.opacity = p.baseOpacity + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.15;
+        p.opacity = p.baseOpacity + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.2;
 
         // Glow effect
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = `hsla(${p.hue}, 100%, 50%, ${p.opacity * 0.5})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${p.hue}, 100%, 50%, ${p.opacity * 0.8})`;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -117,13 +118,13 @@ export function ParticleField() {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 160) {
-            const alpha = 0.12 * (1 - dist / 160);
+          if (dist < 180) {
+            const alpha = 0.18 * (1 - dist / 180);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `hsla(187, 100%, 50%, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
