@@ -113,13 +113,6 @@ const Index = () => {
 
   return (
     <>
-      {/* Background layers */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <GradientMesh />
-      </div>
-      <div className="fixed inset-0 z-[1] pointer-events-none">
-        <ParticleField />
-      </div>
       <div ref={contentRef} className="relative z-[2] min-h-screen overflow-x-hidden">
         <Navbar />
         <main>
