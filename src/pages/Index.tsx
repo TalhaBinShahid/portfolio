@@ -80,7 +80,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <CustomCursor />
-      {/* Global background particle animation */}
+      {/* Gradient mesh behind particles */}
+      <div className="fixed inset-0 -z-20">
+        <GradientMesh />
+      </div>
+      {/* Particles on top of mesh */}
       <div className="fixed inset-0 -z-10">
         <ParticleField />
       </div>
