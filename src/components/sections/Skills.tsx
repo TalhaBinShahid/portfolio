@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 const skillCategories = [
   {
     title: 'AI & Machine Learning',
-    color: 'from-cyan-400 to-blue-500',
     skills: [
       { name: 'Machine Learning', level: 95 },
       { name: 'Deep Learning', level: 90 },
@@ -19,7 +18,6 @@ const skillCategories = [
   },
   {
     title: 'Frameworks & Libraries',
-    color: 'from-purple-400 to-pink-500',
     skills: [
       { name: 'TensorFlow/Keras', level: 90 },
       { name: 'PyTorch', level: 85 },
@@ -31,7 +29,6 @@ const skillCategories = [
   },
   {
     title: 'Backend Development',
-    color: 'from-green-400 to-teal-500',
     skills: [
       { name: 'Python', level: 95 },
       { name: 'FastAPI', level: 90 },
@@ -43,7 +40,6 @@ const skillCategories = [
   },
   {
     title: 'Frontend & Tools',
-    color: 'from-orange-400 to-red-500',
     skills: [
       { name: 'React/Next.js', level: 85 },
       { name: 'JavaScript', level: 88 },
@@ -66,7 +62,7 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
       { width: 0 },
       {
         width: `${level}%`,
-        duration: 1.5,
+        duration: 1.2,
         delay: delay,
         ease: 'power3.out',
         scrollTrigger: {
@@ -80,15 +76,15 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
 
   return (
     <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium">{name}</span>
-        <span className="text-sm text-primary">{level}%</span>
+      <div className="flex justify-between mb-1.5">
+        <span className="text-sm font-medium text-foreground">{name}</span>
+        <span className="text-xs font-mono text-muted-foreground">{level}%</span>
       </div>
-      <div className="h-2 bg-muted rounded-full overflow-hidden">
+      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
         <div
           ref={barRef}
-          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-          style={{ width: 0 }}
+          className="h-full rounded-full"
+          style={{ width: 0, background: 'linear-gradient(90deg, hsl(190 70% 50%), hsl(260 50% 58%))' }}
         />
       </div>
     </div>
@@ -97,33 +93,23 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-card/30">
-      {/* Background Grid */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }} />
-      </div>
-
+    <section id="skills" className="py-28 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="reveal-up section-heading text-gradient">Skills & Expertise</h2>
+          <p className="reveal-up section-label">Expertise</p>
+          <h2 className="reveal-up section-heading">Skills & toolkit</h2>
           <p className="reveal-up section-subheading max-w-2xl mx-auto">
             A comprehensive toolkit for building intelligent, scalable applications
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={category.title}
-              className="reveal-up glass-card rounded-xl p-6"
-              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
+              className="reveal-up glass-card rounded-2xl p-6"
             >
-              <h3 className={`font-display text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
-                {category.title}
-              </h3>
+              <h3 className="font-display text-lg font-semibold mb-6">{category.title}</h3>
               <div>
                 {category.skills.map((skill, skillIndex) => (
                   <SkillBar
@@ -140,8 +126,8 @@ export function Skills() {
 
         {/* Certifications */}
         <div className="mt-16 reveal-up">
-          <h3 className="font-display text-2xl font-bold text-center mb-8">Certifications</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground text-center mb-6">Certifications</p>
+          <div className="flex flex-wrap justify-center gap-3">
             {[
               '5-Day AI Agents Intensive Course with Google',
               'Machine Learning Specialization - Deeplearning.ai',
@@ -150,9 +136,9 @@ export function Skills() {
             ].map((cert) => (
               <div
                 key={cert}
-                className="px-6 py-3 rounded-full bg-muted border border-border hover:border-primary/50 transition-all duration-300"
+                className="px-5 py-2.5 rounded-full text-sm text-muted-foreground border border-border hover:border-primary/30 transition-all duration-300"
               >
-                <span className="text-sm">{cert}</span>
+                {cert}
               </div>
             ))}
           </div>
