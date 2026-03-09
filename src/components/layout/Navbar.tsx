@@ -51,18 +51,7 @@ export function Navbar() {
         isScrolled ? 'glass-card py-3' : 'py-6'
       }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <a 
-          href="#home" 
-          className="font-display text-xl font-bold text-gradient"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('#home');
-          }}
-        >
-          TBS
-        </a>
-
+      <div className="container mx-auto px-6 flex items-center justify-center">
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
