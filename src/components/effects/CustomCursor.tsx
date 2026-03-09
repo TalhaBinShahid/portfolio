@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 function supportsFinePointer() {
@@ -10,17 +10,21 @@ function supportsFinePointer() {
 }
 
 export function CustomCursor() {
+  const [enabled, setEnabled] = useState(false);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!supportsFinePointer()) return;
+    setEnabled(supportsFinePointer());
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
 
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
-    // Positioning: we animate x/y on the elements themselves.
     gsap.set([dot, ring], {
       x: window.innerWidth / 2,
       y: window.innerHeight / 2,
@@ -70,9 +74,10 @@ export function CustomCursor() {
       window.removeEventListener("blur", onLeave);
       document.removeEventListener("mouseleave", onLeave);
     };
-  }, []);
+  }, [enabled]);
 
-  // Render always; CSS hides on non-fine pointers.
+  if (!enabled) return null;
+
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[9999]">
       <div
