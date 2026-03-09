@@ -164,11 +164,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
-          <span className="text-sm">Scroll Down</span>
-          <ArrowDown size={20} className="animate-bounce" />
-        </div>
       </div>
     </section>
   );
