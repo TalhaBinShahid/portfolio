@@ -100,7 +100,7 @@ export function ParticleField() {
         if (p.y > canvas.height) p.y = 0;
 
         // Pulsing opacity
-        p.opacity = p.baseOpacity + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.15;
+        p.opacity = p.baseOpacity + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.2;
 
         // Glow effect
         ctx.shadowBlur = 8;
