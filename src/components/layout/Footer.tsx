@@ -1,54 +1,51 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 border-t border-border">
+    <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Brand */}
-          <div>
-            <a href="#home" className="font-display text-lg font-semibold text-foreground">
-              <span className="text-primary">●</span> talhashahid
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Logo & Copyright */}
+          <div className="text-center md:text-left">
+            <a href="#home" className="font-display text-xl font-bold text-gradient">
+              Talha Bin Shahid
             </a>
             <p className="text-sm text-muted-foreground mt-2">
               Full-Stack AI Engineer
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex items-center justify-center gap-6">
+          {/* Social Links */}
+          <div className="flex items-center gap-4">
             <a
               href="https://github.com/TalhaBinShahid"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
-              aria-label="GitHub"
+              className="p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
             >
-              <Github size={18} />
+              <Github size={20} />
             </a>
             <a
               href="https://linkedin.com/in/raja-talha"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
-              aria-label="LinkedIn"
+              className="p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
             >
-              <Linkedin size={18} />
+              <Linkedin size={20} />
             </a>
             <a
               href="mailto:talhabinshahid2004@outlook.com"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
-              aria-label="Email"
+              className="p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300"
             >
-              <Mail size={18} />
+              <Mail size={20} />
             </a>
           </div>
 
           {/* Copyright */}
-          <p className="text-sm text-muted-foreground text-right">
-            © {currentYear} Talha Bin Shahid
+          <p className="text-sm text-muted-foreground flex items-center gap-1">
+            © {currentYear} Built with <Heart size={14} className="text-destructive" /> by Talha
           </p>
         </div>
       </div>
