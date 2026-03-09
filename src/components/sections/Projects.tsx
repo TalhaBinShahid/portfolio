@@ -2,6 +2,16 @@ import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
+    title: 'Vizdom AI',
+    subtitle: 'AI Educational Video Generation Platform',
+    description: 'Agentic AI platform for intelligent learning video generation, semantic video search, and scalable streaming delivery. Uses LangGraph-powered multi-agent workflows for automated scripting, scene planning, and HLS adaptive streaming with embedding-based semantic search.',
+    tech: ['LangGraph', 'NestJS', 'FastAPI', 'React', 'MongoDB', 'Supabase', 'HLS', 'FFmpeg'],
+    github: 'https://github.com/TalhaBinShahid',
+    live: null,
+    featured: true,
+    gradient: 'from-violet-500 to-fuchsia-600',
+  },
+  {
     title: 'LeafLens',
     subtitle: 'AI Disease Detection & Assistant',
     description: 'End-to-end plant disease detection system using FastAPI + TensorFlow. Fine-tuned ResNet50/InceptionV3 on 50k+ images achieving 97-98% accuracy. Full-stack Next.js app with real-time predictions and RAG-powered AI assistant.',
