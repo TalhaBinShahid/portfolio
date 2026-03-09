@@ -75,17 +75,6 @@ export function Hero() {
         }
       );
 
-      // Animate scroll indicator
-      gsap.fromTo(
-        '.scroll-indicator',
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1,
-          delay: 2,
-          ease: 'power2.out',
-        }
-      );
     }, containerRef);
 
     return () => ctx.revert();
