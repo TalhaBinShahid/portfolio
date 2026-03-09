@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -75,17 +75,6 @@ export function Hero() {
         }
       );
 
-      // Animate scroll indicator
-      gsap.fromTo(
-        '.scroll-indicator',
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1,
-          delay: 2,
-          ease: 'power2.out',
-        }
-      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -164,11 +153,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
-          <span className="text-sm">Scroll Down</span>
-          <ArrowDown size={20} className="animate-bounce" />
-        </div>
       </div>
     </section>
   );
