@@ -136,7 +136,6 @@ export function Skills() {
           <h3 className="font-display text-2xl font-bold text-center mb-8">Certifications</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              '5-Day AI Agents Intensive Course with Google',
               'Machine Learning Specialization - Deeplearning.ai',
               'AI for Everyone - Deeplearning.ai',
               'Crash Course on Python - Google',

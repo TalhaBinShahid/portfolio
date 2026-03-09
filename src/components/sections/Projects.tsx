@@ -2,6 +2,16 @@ import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
+    title: 'Speech-to-Speech Reconstruction for Dysarthria',
+    subtitle: 'Deep Convolutional cGAN',
+    description: 'Advanced speech rehabilitation system using Deep Convolutional Conditional GANs to transform dysarthric speech into intelligible, natural-sounding speech. Trained on 92,780 audio files with U-Net Generator and PatchGAN Discriminator, achieving PESQ score of 2.77 for assistive communication.',
+    tech: ['TensorFlow', 'cGAN', 'U-Net', 'Mel-Spectrograms', 'Python', 'Speech Processing'],
+    github: 'https://github.com/TalhaBinShahid',
+    live: null,
+    featured: true,
+    gradient: 'from-pink-500 to-rose-600',
+  },
+  {
     title: 'Vizdom AI',
     subtitle: 'AI Educational Video Generation Platform',
     description: 'Agentic AI platform for intelligent learning video generation, semantic video search, and scalable streaming delivery. Uses LangGraph-powered multi-agent workflows for automated scripting, scene planning, and HLS adaptive streaming with embedding-based semantic search.',

@@ -59,9 +59,9 @@ export function Experience() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="reveal-up section-heading text-gradient">Experience & Education</h2>
+          <h2 className="reveal-up section-heading text-gradient">Experience</h2>
           <p className="reveal-up section-subheading max-w-2xl mx-auto">
-            My journey in AI engineering and continuous learning
+            My journey in AI engineering and full-stack development
           </p>
         </div>
 
