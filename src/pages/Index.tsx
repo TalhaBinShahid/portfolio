@@ -10,14 +10,14 @@ import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
 import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
+import { ParticleField } from '@/components/three/ParticleField';
+import { CustomCursor } from '@/components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   useEffect(() => {
-    // Initialize scroll animations
     const ctx = gsap.context(() => {
-      // Reveal animations
       gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
         gsap.fromTo(el,
           { opacity: 0, y: 60 },
@@ -78,6 +78,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <CustomCursor />
+      {/* Global background particle animation */}
+      <div className="fixed inset-0 -z-10">
+        <ParticleField />
+      </div>
       <Navbar />
       <main>
         <Hero />

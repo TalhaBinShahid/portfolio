@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { ParticleField } from '../three/ParticleField';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -98,7 +97,7 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <ParticleField />
+      
       
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
