@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from '@/components/layout/Navbar';
@@ -16,76 +16,111 @@ import { GradientMesh } from '@/components/GradientMesh';
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+    const el = contentRef.current;
+    if (!el) return;
 
-      gsap.utils.toArray<HTMLElement>('.reveal-left').forEach((el) => {
-        gsap.fromTo(el,
-          { opacity: 0, x: -60 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+    // Small delay to ensure all children are rendered
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        // Reveal up animations
+        gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((elem) => {
+          gsap.fromTo(elem,
+            { opacity: 0, y: 60 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: elem,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>('.reveal-right').forEach((el) => {
-        gsap.fromTo(el,
-          { opacity: 0, x: 60 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
-    });
+        // Reveal left animations
+        gsap.utils.toArray<HTMLElement>('.reveal-left').forEach((elem) => {
+          gsap.fromTo(elem,
+            { opacity: 0, x: -60 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: elem,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+
+        // Reveal right animations
+        gsap.utils.toArray<HTMLElement>('.reveal-right').forEach((elem) => {
+          gsap.fromTo(elem,
+            { opacity: 0, x: 60 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: elem,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+
+        // Reveal scale animations
+        gsap.utils.toArray<HTMLElement>('.reveal-scale').forEach((elem) => {
+          gsap.fromTo(elem,
+            { opacity: 0, scale: 0.9 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: elem,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+
+        ScrollTrigger.refresh();
+      }, el);
+
+      return () => {
+        ctx.revert();
+      };
+    }, 100);
 
     return () => {
-      ctx.revert();
+      clearTimeout(timer);
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
     <>
-      {/* Background layers - outside overflow container */}
+      {/* Background layers */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <GradientMesh />
       </div>
       <div className="fixed inset-0 z-[1] pointer-events-none">
         <ParticleField />
       </div>
-      <div className="relative z-[2] min-h-screen overflow-x-hidden">
+      <div ref={contentRef} className="relative z-[2] min-h-screen overflow-x-hidden">
         <Navbar />
         <main>
           <Hero />
