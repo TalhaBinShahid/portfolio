@@ -11,7 +11,6 @@ import { Experience } from '@/components/sections/Experience';
 import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
 import { ParticleField } from '@/components/three/ParticleField';
-import { CustomCursor } from '@/components/CustomCursor';
 import { GradientMesh } from '@/components/GradientMesh';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -79,7 +78,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      <CustomCursor />
+      
       {/* Gradient mesh behind particles */}
       <div className="fixed inset-0 -z-20">
         <GradientMesh />
