@@ -18,61 +18,67 @@ const Index = () => {
     // Initialize scroll animations
     const ctx = gsap.context(() => {
       // Reveal animations
-      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
-        gsap.fromTo(el,
+      gsap.utils.toArray<HTMLElement>(".reveal-up").forEach((el) => {
+        gsap.fromTo(
+          el,
           { opacity: 0, y: 60 },
           {
             opacity: 1,
             y: 0,
             duration: 1,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
+              start: "top 85%",
+              toggleActions: "play none none none",
             },
           }
         );
       });
 
-      gsap.utils.toArray<HTMLElement>('.reveal-left').forEach((el) => {
-        gsap.fromTo(el,
+      gsap.utils.toArray<HTMLElement>(".reveal-left").forEach((el) => {
+        gsap.fromTo(
+          el,
           { opacity: 0, x: -60 },
           {
             opacity: 1,
             x: 0,
             duration: 1,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
+              start: "top 85%",
+              toggleActions: "play none none none",
             },
           }
         );
       });
 
-      gsap.utils.toArray<HTMLElement>('.reveal-right').forEach((el) => {
-        gsap.fromTo(el,
+      gsap.utils.toArray<HTMLElement>(".reveal-right").forEach((el) => {
+        gsap.fromTo(
+          el,
           { opacity: 0, x: 60 },
           {
             opacity: 1,
             x: 0,
             duration: 1,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
+              start: "top 85%",
+              toggleActions: "play none none none",
             },
           }
         );
       });
     });
 
+    // Ensures newly-added elements and layout shifts are measured correctly.
+    ScrollTrigger.refresh();
+
     return () => {
       ctx.revert();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 

@@ -1,0 +1,19 @@
+@layer base {
+  /* Only hide the OS cursor on desktop-like pointers; keep default behavior on touch/coarse pointers. */
+  @media (hover: hover) and (pointer: fine) {
+    html,
+    body {
+      cursor: none;
+    }
+
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    [role="button"],
+    .cursor-pointer {
+      cursor: none;
+    }
+  }
+}
