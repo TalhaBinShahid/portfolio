@@ -68,6 +68,7 @@ export function GradientMesh() {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
