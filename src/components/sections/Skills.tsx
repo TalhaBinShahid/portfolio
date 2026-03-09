@@ -55,42 +55,36 @@ const skillCategories = [
   },
 ];
 
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const barRef = useRef<HTMLDivElement>(null);
+function SkillBadge({ name, delay }: { name: string; delay: number }) {
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!barRef.current) return;
+    if (!badgeRef.current) return;
 
     gsap.fromTo(
-      barRef.current,
-      { width: 0 },
+      badgeRef.current,
+      { opacity: 0, scale: 0.8 },
       {
-        width: `${level}%`,
-        duration: 1.5,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
         delay: delay,
-        ease: 'power3.out',
+        ease: 'back.out(1.7)',
         scrollTrigger: {
-          trigger: barRef.current,
+          trigger: badgeRef.current,
           start: 'top 90%',
           toggleActions: 'play none none reverse',
         },
       }
     );
-  }, [level, delay]);
+  }, [delay]);
 
   return (
-    <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium">{name}</span>
-        <span className="text-sm text-primary">{level}%</span>
-      </div>
-      <div className="h-2 bg-muted rounded-full overflow-hidden">
-        <div
-          ref={barRef}
-          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-          style={{ width: 0 }}
-        />
-      </div>
+    <div
+      ref={badgeRef}
+      className="skill-badge opacity-0"
+    >
+      {name}
     </div>
   );
 }
