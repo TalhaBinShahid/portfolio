@@ -1,0 +1,163 @@
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const skillCategories = [
+  {
+    title: 'AI & Machine Learning',
+    color: 'from-cyan-400 to-blue-500',
+    skills: [
+      { name: 'Machine Learning', level: 95 },
+      { name: 'Deep Learning', level: 90 },
+      { name: 'Computer Vision', level: 88 },
+      { name: 'NLP', level: 85 },
+      { name: 'Agentic AI', level: 92 },
+      { name: 'GenAI', level: 90 },
+    ],
+  },
+  {
+    title: 'Frameworks & Libraries',
+    color: 'from-purple-400 to-pink-500',
+    skills: [
+      { name: 'TensorFlow/Keras', level: 90 },
+      { name: 'PyTorch', level: 85 },
+      { name: 'LangChain/LangGraph', level: 92 },
+      { name: 'Scikit-learn', level: 95 },
+      { name: 'OpenCV', level: 88 },
+      { name: 'YOLO', level: 85 },
+    ],
+  },
+  {
+    title: 'Backend Development',
+    color: 'from-green-400 to-teal-500',
+    skills: [
+      { name: 'Python', level: 95 },
+      { name: 'FastAPI', level: 90 },
+      { name: 'SQL/PostgreSQL', level: 85 },
+      { name: 'Vector Databases', level: 88 },
+      { name: 'REST APIs', level: 90 },
+      { name: 'Web Scraping', level: 92 },
+    ],
+  },
+  {
+    title: 'Frontend & Tools',
+    color: 'from-orange-400 to-red-500',
+    skills: [
+      { name: 'React/Next.js', level: 85 },
+      { name: 'JavaScript', level: 88 },
+      { name: 'Git/GitHub', level: 92 },
+      { name: 'Streamlit', level: 90 },
+      { name: 'Jupyter/Colab', level: 95 },
+      { name: 'Docker', level: 80 },
+    ],
+  },
+];
+
+function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!barRef.current) return;
+
+    gsap.fromTo(
+      barRef.current,
+      { width: 0 },
+      {
+        width: `${level}%`,
+        duration: 1.5,
+        delay: delay,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: barRef.current,
+          start: 'top 90%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  }, [level, delay]);
+
+  return (
+    <div className="mb-4">
+      <div className="flex justify-between mb-1">
+        <span className="text-sm font-medium">{name}</span>
+        <span className="text-sm text-primary">{level}%</span>
+      </div>
+      <div className="h-2 bg-muted rounded-full overflow-hidden">
+        <div
+          ref={barRef}
+          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+          style={{ width: 0 }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function Skills() {
+  return (
+    <section id="skills" className="py-24 relative overflow-hidden bg-card/30">
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+        }} />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="reveal-up section-heading text-gradient">Skills & Expertise</h2>
+          <p className="reveal-up section-subheading max-w-2xl mx-auto">
+            A comprehensive toolkit for building intelligent, scalable applications
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {skillCategories.map((category, categoryIndex) => (
+            <div
+              key={category.title}
+              className="reveal-up glass-card rounded-xl p-6"
+              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
+            >
+              <h3 className={`font-display text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                {category.title}
+              </h3>
+              <div>
+                {category.skills.map((skill, skillIndex) => (
+                  <SkillBar
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    delay={categoryIndex * 0.1 + skillIndex * 0.05}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Certifications */}
+        <div className="mt-16 reveal-up">
+          <h3 className="font-display text-2xl font-bold text-center mb-8">Certifications</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              '5-Day AI Agents Intensive Course with Google',
+              'Machine Learning Specialization - Deeplearning.ai',
+              'AI for Everyone - Deeplearning.ai',
+              'Crash Course on Python - Google',
+            ].map((cert) => (
+              <div
+                key={cert}
+                className="px-6 py-3 rounded-full bg-muted border border-border hover:border-primary/50 transition-all duration-300"
+              >
+                <span className="text-sm">{cert}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
