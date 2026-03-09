@@ -21,7 +21,7 @@ export function ParticleField() {
     }
 
     const particles: Particle[] = [];
-    const particleCount = 100;
+    const particleCount = 180;
 
     const resize = () => {
       canvas.width = window.innerWidth;
