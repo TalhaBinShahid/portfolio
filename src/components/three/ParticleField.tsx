@@ -63,7 +63,8 @@ export function ParticleField() {
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, canvas.width * 0.7
       );
-      grad.addColorStop(0, 'hsla(262, 83%, 58%, 0.03)');
+      grad.addColorStop(0, 'hsla(262, 83%, 58%, 0.06)');
+      grad.addColorStop(0.5, 'hsla(187, 100%, 50%, 0.02)');
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
