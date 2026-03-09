@@ -9,88 +9,82 @@ const skillCategories = [
     title: 'AI & Machine Learning',
     color: 'from-cyan-400 to-blue-500',
     skills: [
-      { name: 'Machine Learning', level: 95 },
-      { name: 'Deep Learning', level: 90 },
-      { name: 'Computer Vision', level: 88 },
-      { name: 'NLP', level: 85 },
-      { name: 'Agentic AI', level: 92 },
-      { name: 'GenAI', level: 90 },
+      'Machine Learning',
+      'Deep Learning',
+      'Computer Vision',
+      'NLP',
+      'Agentic AI',
+      'GenAI',
     ],
   },
   {
     title: 'Frameworks & Libraries',
     color: 'from-purple-400 to-pink-500',
     skills: [
-      { name: 'TensorFlow/Keras', level: 90 },
-      { name: 'PyTorch', level: 85 },
-      { name: 'LangChain/LangGraph', level: 92 },
-      { name: 'Scikit-learn', level: 95 },
-      { name: 'OpenCV', level: 88 },
-      { name: 'YOLO', level: 85 },
+      'TensorFlow/Keras',
+      'PyTorch',
+      'LangChain/LangGraph',
+      'Scikit-learn',
+      'OpenCV',
+      'YOLO',
     ],
   },
   {
     title: 'Backend Development',
     color: 'from-green-400 to-teal-500',
     skills: [
-      { name: 'Python', level: 95 },
-      { name: 'FastAPI', level: 90 },
-      { name: 'SQL/PostgreSQL', level: 85 },
-      { name: 'Vector Databases', level: 88 },
-      { name: 'REST APIs', level: 90 },
-      { name: 'Web Scraping', level: 92 },
+      'Python',
+      'FastAPI',
+      'SQL/PostgreSQL',
+      'Vector Databases',
+      'REST APIs',
+      'Web Scraping',
     ],
   },
   {
     title: 'Frontend & Tools',
     color: 'from-orange-400 to-red-500',
     skills: [
-      { name: 'React/Next.js', level: 85 },
-      { name: 'JavaScript', level: 88 },
-      { name: 'Git/GitHub', level: 92 },
-      { name: 'Streamlit', level: 90 },
-      { name: 'Jupyter/Colab', level: 95 },
-      { name: 'Docker', level: 80 },
+      'React/Next.js',
+      'JavaScript',
+      'Git/GitHub',
+      'Streamlit',
+      'Jupyter/Colab',
+      'Docker',
     ],
   },
 ];
 
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const barRef = useRef<HTMLDivElement>(null);
+function SkillBadge({ name, delay }: { name: string; delay: number }) {
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!barRef.current) return;
+    if (!badgeRef.current) return;
 
     gsap.fromTo(
-      barRef.current,
-      { width: 0 },
+      badgeRef.current,
+      { opacity: 0, scale: 0.8 },
       {
-        width: `${level}%`,
-        duration: 1.5,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
         delay: delay,
-        ease: 'power3.out',
+        ease: 'back.out(1.7)',
         scrollTrigger: {
-          trigger: barRef.current,
+          trigger: badgeRef.current,
           start: 'top 90%',
           toggleActions: 'play none none reverse',
         },
       }
     );
-  }, [level, delay]);
+  }, [delay]);
 
   return (
-    <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium">{name}</span>
-        <span className="text-sm text-primary">{level}%</span>
-      </div>
-      <div className="h-2 bg-muted rounded-full overflow-hidden">
-        <div
-          ref={barRef}
-          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-          style={{ width: 0 }}
-        />
-      </div>
+    <div
+      ref={badgeRef}
+      className="skill-badge opacity-0"
+    >
+      {name}
     </div>
   );
 }
@@ -124,12 +118,11 @@ export function Skills() {
               <h3 className={`font-display text-xl font-bold mb-6 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
                 {category.title}
               </h3>
-              <div>
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
+                  <SkillBadge
+                    key={skill}
+                    name={skill}
                     delay={categoryIndex * 0.1 + skillIndex * 0.05}
                   />
                 ))}
@@ -143,7 +136,6 @@ export function Skills() {
           <h3 className="font-display text-2xl font-bold text-center mb-8">Certifications</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              '5-Day AI Agents Intensive Course with Google',
               'Machine Learning Specialization - Deeplearning.ai',
               'AI for Everyone - Deeplearning.ai',
               'Crash Course on Python - Google',

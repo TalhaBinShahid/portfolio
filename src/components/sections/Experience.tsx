@@ -1,6 +1,20 @@
-import { Briefcase, GraduationCap, Award } from 'lucide-react';
+import { Briefcase, Award } from 'lucide-react';
 
 const experiences = [
+  {
+    type: 'work',
+    title: 'Full Stack AI Engineer',
+    company: 'Introva',
+    location: 'Remote',
+    period: 'Dec 2024 - Present',
+    description: [
+      'Developing end-to-end AI-powered applications using modern tech stacks',
+      'Building intelligent systems with machine learning models and APIs',
+      'Implementing scalable backend architectures and responsive frontend interfaces',
+      'Working with cutting-edge AI technologies and frameworks for production systems',
+    ],
+    icon: Briefcase,
+  },
   {
     type: 'work',
     title: 'AI/ML Fellowship',
@@ -14,19 +28,6 @@ const experiences = [
       'Designed and implemented advanced AI agents and RAG chatbots using LangGraph and Google AI SDK',
     ],
     icon: Briefcase,
-  },
-  {
-    type: 'education',
-    title: 'BS Computer Science',
-    company: 'National University of Modern Languages (NUML)',
-    location: 'Islamabad, Pakistan',
-    period: 'In Progress',
-    description: [
-      'Pursuing comprehensive computer science education with focus on AI/ML',
-      'Active participation in coding competitions and hackathons',
-      'Building real-world projects alongside academic curriculum',
-    ],
-    icon: GraduationCap,
   },
 ];
 
@@ -58,9 +59,9 @@ export function Experience() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="reveal-up section-heading text-gradient">Experience & Education</h2>
+          <h2 className="reveal-up section-heading text-gradient">Experience</h2>
           <p className="reveal-up section-subheading max-w-2xl mx-auto">
-            My journey in AI engineering and continuous learning
+            My journey in AI engineering and full-stack development
           </p>
         </div>
 
