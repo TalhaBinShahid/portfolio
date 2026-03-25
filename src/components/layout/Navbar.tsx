@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -14,6 +15,22 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      gsap.fromTo(
+        navRef.current,
+        { y: -80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: 'power3.out' }
+      );
+      gsap.fromTo(
+        '.nav-link-item',
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, duration: 0.5, delay: 0.8, stagger: 0.07, ease: 'power3.out' }
+      );
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +64,7 @@ export function Navbar() {
 
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'glass-card py-3' : 'py-6'
       }`}
@@ -62,7 +80,7 @@ export function Navbar() {
                 e.preventDefault();
                 handleNavClick(link.href);
               }}
-              className={`nav-link ${activeSection === link.href.substring(1) ? 'active text-primary' : ''}`}
+              className={`nav-link-item nav-link ${activeSection === link.href.substring(1) ? 'active text-primary' : ''}`}
             >
               {link.label}
             </a>

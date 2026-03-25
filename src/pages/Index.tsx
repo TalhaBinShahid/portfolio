@@ -8,7 +8,6 @@ import { About } from '@/components/sections/About';
 import { Skills } from '@/components/sections/Skills';
 import { Projects } from '@/components/sections/Projects';
 import { Experience } from '@/components/sections/Experience';
-import { GitHubActivity } from '@/components/sections/GitHubActivity';
 import { Contact } from '@/components/sections/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -95,6 +94,39 @@ const Index = () => {
           );
         });
 
+        // Section headings - animated clip from below
+        gsap.utils.toArray<HTMLElement>('.section-heading').forEach((heading) => {
+          gsap.fromTo(heading,
+            { opacity: 0, y: 30, clipPath: 'inset(100% 0% 0% 0%)' },
+            {
+              opacity: 1,
+              y: 0,
+              clipPath: 'inset(0% 0% 0% 0%)',
+              duration: 1,
+              ease: 'power4.out',
+              scrollTrigger: {
+                trigger: heading,
+                start: 'top 90%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+
+        // Parallax background blobs
+        gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((bg) => {
+          gsap.to(bg, {
+            yPercent: -20,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: bg.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          });
+        });
+
         ScrollTrigger.refresh();
       }, el);
 
@@ -119,7 +151,6 @@ const Index = () => {
           <Skills />
           <Projects />
           <Experience />
-          <GitHubActivity />
           <Contact />
         </main>
         <Footer />

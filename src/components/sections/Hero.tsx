@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { ParticleField } from '../three/ParticleField';
 import { GradientMesh } from '../GradientMesh';
+import TextType from '../TextType';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,14 +101,16 @@ export function Hero() {
       <div className="container mx-auto px-6 pt-24 pb-12 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Name */}
-          <div ref={titleRef} className="overflow-hidden mb-4">
+          <div ref={titleRef} className="overflow-hidden mb-2">
             <h1 className="hero-title-line font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-              <span className="text-foreground">Talha Bin</span>
-            </h1>
-          </div>
-          <div className="overflow-hidden mb-6">
-            <h1 className="hero-title-line font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gradient">
-              Shahid
+              <TextType
+                text="Talha Bin Shahid"
+                as="span"
+                typingSpeed={75}
+                loop={false}
+                showCursor={false}
+                className="text-gradient"
+              />
             </h1>
           </div>
 

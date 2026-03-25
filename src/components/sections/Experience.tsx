@@ -1,4 +1,9 @@
-import { Briefcase, Award } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Briefcase } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -6,12 +11,13 @@ const experiences = [
     title: 'Full Stack AI Engineer',
     company: 'Introva',
     location: 'Remote',
-    period: 'Dec 2024 - Present',
+    period: 'Jan 2026 - Present',
     description: [
-      'Developing end-to-end AI-powered applications using modern tech stacks',
-      'Building intelligent systems with machine learning models and APIs',
-      'Implementing scalable backend architectures and responsive frontend interfaces',
-      'Working with cutting-edge AI technologies and frameworks for production systems',
+      'Architecting and building Retrieval-Augmented Generation (RAG) systems for intelligent document processing and knowledge retrieval',
+      'Developing autonomous AI agents leveraging LangChain, LangGraph, and custom orchestration frameworks',
+      'Fine-tuning and integrating Large Language Models (LLMs) for domain-specific production applications',
+      'Building robust data scraping and automation pipelines for large-scale data collection and processing',
+      'Delivering end-to-end full-stack AI solutions from model development through deployment and monitoring',
     ],
     icon: Briefcase,
   },
@@ -31,24 +37,55 @@ const experiences = [
   },
 ];
 
-const achievements = [
-  {
-    title: 'GitHub Developer Program Member',
-    description: 'Active member of the GitHub Developer Program with Pro status',
-  },
-  {
-    title: 'AI Agents Intensive',
-    description: '5-Day intensive course with Google on building AI agents',
-  },
-  {
-    title: 'Multiple ML Specializations',
-    description: 'Completed certifications from Deeplearning.ai and Google',
-  },
-];
 
 export function Experience() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate timeline line growing
+      gsap.fromTo(
+        '.timeline-line',
+        { scaleY: 0, transformOrigin: 'top' },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.timeline-line',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      // Staggered experience cards
+      gsap.fromTo(
+        '.exp-card',
+        { opacity: 0, x: -50, scale: 0.95 },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.3,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.exp-timeline',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-card/30">
+    <section id="experience" ref={sectionRef} className="py-24 relative overflow-hidden bg-card/30">
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -65,17 +102,15 @@ export function Experience() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-1 gap-12">
           {/* Timeline */}
-          <div className="lg:col-span-2">
-            <div className="relative pl-8">
+          <div>
+            <div className="exp-timeline relative pl-8">
               {/* Timeline Line */}
               <div className="timeline-line" />
 
               {experiences.map((exp, index) => (
-                <div key={exp.title} className="reveal-left relative mb-12 last:mb-0">
-                  {/* Timeline Dot */}
-                  <div className="timeline-dot top-0" />
+                <div key={exp.title} className="exp-card relative mb-12 last:mb-0">
 
                   <div className="glass-card rounded-xl p-6 ml-4">
                     <div className="flex items-start gap-4 mb-4">
@@ -99,25 +134,6 @@ export function Experience() {
                       ))}
                     </ul>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <div className="reveal-right">
-            <h3 className="font-display text-xl font-bold mb-6 flex items-center gap-2">
-              <Award className="text-primary" size={24} />
-              Achievements
-            </h3>
-            <div className="space-y-4">
-              {achievements.map((achievement) => (
-                <div
-                  key={achievement.title}
-                  className="glass-card rounded-xl p-4 hover:border-primary/30 transition-all duration-300"
-                >
-                  <h4 className="font-semibold mb-1">{achievement.title}</h4>
-                  <p className="text-sm text-muted-foreground">{achievement.description}</p>
                 </div>
               ))}
             </div>

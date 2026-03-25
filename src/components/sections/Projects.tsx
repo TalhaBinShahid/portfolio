@@ -1,4 +1,9 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ExternalLink } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -84,10 +89,10 @@ const projects = [
 ];
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const animClass = project.featured ? 'featured-project' : 'other-project';
   return (
     <div
-      className={`reveal-up project-card ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
+      className={`${animClass} project-card ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}
     >
       {/* Gradient Top Bar */}
       <div className={`h-1 bg-gradient-to-r ${project.gradient}`} />
@@ -145,11 +150,56 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 }
 
 export function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Featured project cards stagger
+      gsap.fromTo(
+        '.featured-project',
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.featured-grid',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      // Other project cards stagger
+      gsap.fromTo(
+        '.other-project',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.other-grid',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-24 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-x-1/2" />
+      <div className="parallax-bg absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="parallax-bg absolute top-1/4 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-x-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -160,7 +210,7 @@ export function Projects() {
         </div>
 
         {/* Featured Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="featured-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
@@ -171,7 +221,7 @@ export function Projects() {
           <h3 className="font-display text-xl font-semibold text-center mb-8 text-muted-foreground">
             More Projects
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="other-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.filter(p => !p.featured).map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index + 3} />
             ))}
