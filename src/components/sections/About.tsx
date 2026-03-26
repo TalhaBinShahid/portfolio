@@ -1,30 +1,34 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Code2, Brain, Rocket, Users } from 'lucide-react';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Code2, Brain, Rocket, Users } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const highlights = [
   {
     icon: Brain,
-    title: 'AI & ML Expert',
-    description: 'Deep expertise in machine learning, deep learning, and building intelligent systems that solve real-world problems.',
+    title: "AI & ML Expert",
+    description:
+      "Deep expertise in machine learning, deep learning, and building intelligent systems that solve real-world problems.",
   },
   {
     icon: Code2,
-    title: 'Full-Stack Developer',
-    description: 'Building end-to-end applications with modern frameworks like React, Next.js, FastAPI, and more.',
+    title: "Full-Stack Developer",
+    description:
+      "Building end-to-end applications with modern frameworks like React, Next.js, FastAPI, and more.",
   },
   {
     icon: Rocket,
-    title: 'Agentic AI Pioneer',
-    description: 'Designing autonomous AI agents using LangChain, LangGraph, and Google ADK for complex workflows.',
+    title: "Agentic AI Pioneer",
+    description:
+      "Designing autonomous AI agents using LangChain, LangGraph, and Google ADK for complex workflows.",
   },
   {
     icon: Users,
-    title: 'Continuous Learner',
-    description: 'Currently pursuing AI/ML Fellowship at Buildables, constantly expanding knowledge in cutting-edge AI technologies.',
+    title: "Continuous Learner",
+    description:
+      "Working as a Full-Stack AI Engineer, building end-to-end intelligent systems while continuously advancing skills in AI agents, RAG, LLMs, and workflow automation.",
   },
 ];
 
@@ -35,7 +39,7 @@ export function About() {
     const ctx = gsap.context(() => {
       // Staggered highlight cards
       gsap.fromTo(
-        '.about-card',
+        ".about-card",
         { opacity: 0, y: 40, scale: 0.95 },
         {
           opacity: 1,
@@ -43,31 +47,31 @@ export function About() {
           scale: 1,
           duration: 0.7,
           stagger: 0.15,
-          ease: 'back.out(1.4)',
+          ease: "back.out(1.4)",
           scrollTrigger: {
-            trigger: '.about-cards-grid',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
+            trigger: ".about-cards-grid",
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
-        }
+        },
       );
 
       // Tech badges stagger
       gsap.fromTo(
-        '.about-tech-badge',
+        ".about-tech-badge",
         { opacity: 0, scale: 0.8 },
         {
           opacity: 1,
           scale: 1,
           duration: 0.5,
           stagger: 0.06,
-          ease: 'back.out(1.7)',
+          ease: "back.out(1.7)",
           scrollTrigger: {
-            trigger: '.about-tech-strip',
-            start: 'top 90%',
-            toggleActions: 'play none none none',
+            trigger: ".about-tech-strip",
+            start: "top 90%",
+            toggleActions: "play none none none",
           },
-        }
+        },
       );
     }, sectionRef);
 
@@ -75,7 +79,11 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="py-24 relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="parallax-bg absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="parallax-bg absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
@@ -92,24 +100,34 @@ export function About() {
           {/* Left: Description */}
           <div className="reveal-left">
             <h3 className="font-display text-2xl md:text-3xl font-bold mb-6">
-              Building the Future with <span className="text-gradient">Intelligent Systems</span>
+              Building the Future with{" "}
+              <span className="text-gradient">Intelligent Systems</span>
             </h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm an AI/ML Engineer based in Islamabad, Pakistan, with a deep passion for building 
-                intelligent systems that make a real impact. Currently pursuing my BS in Computer Science 
-                at NUML while gaining hands-on experience through the AI/ML Fellowship at Buildables.
+                I'm a Full-Stack AI Engineer based in Islamabad, Pakistan,
+                building intelligent systems that combine advanced machine
+                learning with robust software engineering. My work focuses on
+                translating cutting-edge AI capabilities into reliable,
+                production-ready applications that deliver real-world value.
               </p>
               <p>
-                My journey in AI spans from foundational machine learning to cutting-edge agentic AI systems. 
-                I've built everything from computer vision applications achieving 97%+ accuracy to autonomous 
-                AI agents using modern frameworks like LangChain, LangGraph, and Google's ADK.
+                I specialize in Agentic AI, autonomous AI agents,
+                Retrieval-Augmented Generation (RAG), and Large Language Model
+                (LLM) systems. From large-scale data acquisition and scraping
+                pipelines to backend architectures and intuitive interfaces, I
+                design end-to-end solutions that enable machines to reason,
+                interact with tools, and execute complex workflows with minimal
+                human intervention.
               </p>
               <p>
-                I believe in learning by doing — every project on my GitHub represents hours of experimentation, 
-                debugging, and pushing the boundaries of what I thought was possible. Whether it's fine-tuning 
-                YOLO models for number plate recognition or building RAG-powered chatbots, I approach each 
-                challenge with curiosity and determination.
+                Currently pursuing my BS in Computer Science at NUML while
+                working professionally in AI, I am driven by a long-term goal:
+                to contribute to the development of safe, scalable, and
+                genuinely useful intelligent systems. I value clarity of
+                thought, strong fundamentals, and engineering rigor — building
+                systems that are not only impressive in capability, but
+                dependable in practice.
               </p>
             </div>
           </div>
@@ -124,8 +142,12 @@ export function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <item.icon className="text-primary" size={24} />
                 </div>
-                <h4 className="font-display font-semibold mb-2">{item.title}</h4>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <h4 className="font-display font-semibold mb-2">
+                  {item.title}
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
@@ -133,10 +155,24 @@ export function About() {
 
         {/* Technologies Strip */}
         <div className="about-tech-strip">
-          <p className="reveal-up text-center text-sm text-muted-foreground mb-6">Technologies I work with</p>
+          <p className="reveal-up text-center text-sm text-muted-foreground mb-6">
+            Technologies I work with
+          </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['Python', 'TensorFlow', 'PyTorch', 'LangChain', 'React', 'Next.js', 'FastAPI', 'PostgreSQL', 'Docker'].map((tech) => (
-              <span key={tech} className="about-tech-badge skill-badge">{tech}</span>
+            {[
+              "Python",
+              "TensorFlow",
+              "PyTorch",
+              "LangChain",
+              "React",
+              "Next.js",
+              "FastAPI",
+              "PostgreSQL",
+              "Docker",
+            ].map((tech) => (
+              <span key={tech} className="about-tech-badge skill-badge">
+                {tech}
+              </span>
             ))}
           </div>
         </div>

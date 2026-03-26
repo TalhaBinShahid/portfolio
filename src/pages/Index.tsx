@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplashCursor from '@/components/SplashCursor';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
@@ -143,6 +144,17 @@ const Index = () => {
 
   return (
     <>
+      <SplashCursor
+        SIM_RESOLUTION={128}
+        DYE_RESOLUTION={1440}
+        DENSITY_DISSIPATION={3.5}
+        VELOCITY_DISSIPATION={2}
+        PRESSURE={0.1}
+        CURL={3}
+        SPLAT_RADIUS={0.05}
+        SPLAT_FORCE={6000}
+        COLOR_UPDATE_SPEED={10}
+      />
       <div ref={contentRef} className="relative z-[2] min-h-screen overflow-x-hidden">
         <Navbar />
         <main>
